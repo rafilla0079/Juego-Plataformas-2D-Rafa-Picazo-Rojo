@@ -7,14 +7,14 @@ public class PlayerController : MonoBehaviour
     [Header("Movimiento")]
     [SerializeField] private float moveSpeed = 8f;
     [SerializeField] private float jumpForce = 12f;
-    
+
     [Header("UI y Progresión de Coleccionables")]
     [SerializeField] private TextMeshProUGUI scoreText;
-    [SerializeField] private int targetCollectibles = 5; 
+    [SerializeField] private int targetCollectibles = 5;
     private int score = 0;
 
     [Header("Sistema de Llave (Secretos)")]
-    [HideInInspector] public bool hasKey = false; 
+    [HideInInspector] public bool hasKey = false;
 
     private Rigidbody2D rb;
     private bool levelFinished = false; // Seguro para evitar congelamientos
@@ -44,7 +44,6 @@ public class PlayerController : MonoBehaviour
     {
         if (levelFinished) return;
 
-        
         if (collision.CompareTag("Collectible"))
         {
             score++;
@@ -55,7 +54,7 @@ public class PlayerController : MonoBehaviour
             {
                 levelFinished = true; // Activamos el seguro para evitar bloqueos
                 Debug.Log("¡Nivel completado! Cargando siguiente nivel...");
-                AvanceSiguienteNivel();
+                AvancesSiguienteNivel();
             }
         }
 
@@ -67,14 +66,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    
     public void CollectKey()
     {
         hasKey = true;
         Debug.Log("¡Llave secreta recogida!");
     }
 
-    
     public void TryOpenDoor()
     {
         if (levelFinished) return;
@@ -89,19 +86,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    
-    void AvanceSiguienteNivel()
+    void AvancesSiguienteNivel()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         int nextSceneIndex = currentSceneIndex + 1;
 
-        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+        // Comprobamos si el siguiente índice está antes de la escena de victoria (índice 4 en tus Build Settings)[cite: 6]
+        if (nextSceneIndex < 4) 
         {
             SceneManager.LoadScene(nextSceneIndex);
         }
         else
         {
-            SceneManager.LoadScene("WinScene"); 
+            SceneManager.LoadScene("WinScene");
         }
     }
 }

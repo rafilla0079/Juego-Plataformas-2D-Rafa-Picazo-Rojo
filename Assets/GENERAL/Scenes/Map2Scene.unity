@@ -5615,6 +5615,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DobleSalto
   fuerzaSalto: 7
   cooldownSalto: 0.5
+  rb: {fileID: 0}
+  puedeSaltoDoble: 0
+  tiempoSiguienteSalto: 0
 --- !u!1 &1668460566
 GameObject:
   m_ObjectHideFlags: 0
