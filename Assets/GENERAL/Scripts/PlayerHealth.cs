@@ -23,7 +23,7 @@ public class PlayerHealth : MonoBehaviour
             healthSlider.value = currentHealth;
         }
     }
-
+ 
     // Método para restar vida
     public void TakeDamage(int damageAmount)
     {
